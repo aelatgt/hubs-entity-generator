@@ -3,11 +3,10 @@ import { useRef } from 'react'
 
 import Editor from '@monaco-editor/react'
 import stripJsonComments from 'strip-json-comments'
-import { toast, ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.min.css'
 
 import { useClipboard, useDownload, useHubsComponents } from '@/hooks'
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import placeholder from '@/data/placeholder'
 
 export default function App() {
@@ -35,7 +34,6 @@ export default function App() {
 		onCopy: () => {
 			const snippet = createRegistrations(getComponents())
 			copy(snippet)
-			toast.info('Snippet copied to clipboard!')
 		},
 		onUpload: async (file) => {
 			try {
@@ -50,22 +48,20 @@ export default function App() {
 	}
 	return (
 		<div tw="h-screen bg-dark text-white">
-			<div tw="flex flex-col h-full max-w-2xl mx-auto overflow-hidden">
+			<div tw="flex flex-col h-full max-w-2xl mx-auto">
 				<Header {...headerProps} />
-				<Editor
-					defaultLanguage="json"
-					theme="vs-dark"
-					defaultValue={placeholder}
-					onMount={onMountEditor}
-					options={{
-						minimap: { enabled: false },
-					}}
-				/>
-				<ToastContainer
-					position="top-right"
-					pauseOnHover={false}
-					pauseOnFocusLoss={false}
-				/>
+				<div tw="flex-grow overflow-hidden">
+					<Editor
+						defaultLanguage="json"
+						theme="vs-dark"
+						defaultValue={placeholder}
+						onMount={onMountEditor}
+						options={{
+							minimap: { enabled: false },
+						}}
+					/>
+				</div>
+				<Footer />
 			</div>
 		</div>
 	)
