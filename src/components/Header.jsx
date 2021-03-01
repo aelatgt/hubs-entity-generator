@@ -1,6 +1,5 @@
 import '@twind/macro'
-import Icon from '@mdi/react'
-import { mdiClipboardText } from '@mdi/js'
+import { Clipboard } from 'heroicons-react'
 
 import { useUpload } from '@/hooks'
 import Button from '@/components/Button'
@@ -18,7 +17,7 @@ export default function Header({ onExport, onUpload, onReset, onCopy }) {
 				<Button onClick={onReset}>Reset</Button>
 				<div tw="flex-grow flex justify-end">
 					<Button onClick={onCopy}>
-						<Icon path={mdiClipboardText} tw="h-4 mr-1" />
+						<Clipboard tw="h-4" />
 						<span>Registrations</span>
 					</Button>
 				</div>

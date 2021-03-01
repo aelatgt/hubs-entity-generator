@@ -7,10 +7,13 @@ import { babel } from '@rollup/plugin-babel'
 export default defineConfig({
 	plugins: [
 		reactRefresh(),
-		babel({
-			babelHelpers: 'bundled',
-			exclude: /node_modules/,
-		}),
+		{
+			...babel({
+				babelHelpers: 'bundled',
+				exclude: /node_modules/,
+			}),
+			enforce: 'pre',
+		},
 	],
 	esbuild: {
 		jsxInject: `import React from 'react'`,
